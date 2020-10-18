@@ -6,6 +6,9 @@ services:
         command: gunicorn --bind 0.0.0.0:5000 wsgi:app
         deploy:
             replicas: 2
+            placement:
+                constraints:
+                    - node.label.api == true
         secrets:
             - db_password
 
@@ -14,7 +17,11 @@ services:
         ports:
             - 8000:80
         deploy:
+            replicas: 1
             mode: global
+            placement:
+                constraints:
+                    - node.label.nginx == true
 
     redis:
         image: redis

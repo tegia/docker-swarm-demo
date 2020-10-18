@@ -37,3 +37,6 @@ docker stack deploy -c docker-compose.yml demo
 
 The first line defines the `db_password` secret in your Swarm, and the second deploys the actual stack.
 https://www.callicoder.com/docker-machine-swarm-stack-golang-example/
+
+# Add label
+docker node update --label-add api=true 8zcy7zl4zb2hveghwoy10o4a
