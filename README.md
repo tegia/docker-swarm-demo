@@ -39,4 +39,11 @@ The first line defines the `db_password` secret in your Swarm, and the second de
 https://www.callicoder.com/docker-machine-swarm-stack-golang-example/
 
 # Add label
-docker node update --label-add api=true 8zcy7zl4zb2hveghwoy10o4a
+docker node update --label-add api=true ytnceolfpy0sre2rbu782zbkk
+
+# Remove label
+docker node update --label-rm api ytnceolfpy0sre2rbu782zbkk
+docker node update --label-rm api p5hsf6ckj07r4jxd5iv4a4ojf
+# Get Label of node
+docker node ls -q | xargs docker node inspect \
+  -f '{{ .ID }} [{{ .Description.Hostname }}]: {{ .Spec.Labels }}'

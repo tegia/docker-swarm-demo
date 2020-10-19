@@ -7,9 +7,9 @@ services:
         deploy:
             mode: replicated
             replicas: 2
-            placement:
-                constraints:
-                    - node.label.api == true
+            # placement:
+            #     constraints:
+            #         - node.label.api == true
         secrets:
             - db_password
 
