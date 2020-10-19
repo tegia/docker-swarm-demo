@@ -47,3 +47,6 @@ docker node update --label-rm api p5hsf6ckj07r4jxd5iv4a4ojf
 # Get Label of node
 docker node ls -q | xargs docker node inspect \
   -f '{{ .ID }} [{{ .Description.Hostname }}]: {{ .Spec.Labels }}'
+
+# Deploy
+docker stack deploy -c docker-compose.yml demo
