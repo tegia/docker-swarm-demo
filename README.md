@@ -40,10 +40,15 @@ https://www.callicoder.com/docker-machine-swarm-stack-golang-example/
 
 # Add label
 docker node update --label-add api=true ytnceolfpy0sre2rbu782zbkk
+docker node update --label-add api=true p5hsf6ckj07r4jxd5iv4a4ojf
+docker node update --label-add nginx=true ytnceolfpy0sre2rbu782zbkk
 
 # Remove label
 docker node update --label-rm api ytnceolfpy0sre2rbu782zbkk
 docker node update --label-rm api p5hsf6ckj07r4jxd5iv4a4ojf
+docker node update --label-rm demo_nginx ytnceolfpy0sre2rbu782zbkk
+
+
 # Get Label of node
 docker node ls -q | xargs docker node inspect \
   -f '{{ .ID }} [{{ .Description.Hostname }}]: {{ .Spec.Labels }}'
