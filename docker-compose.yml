@@ -22,7 +22,7 @@ services:
             replicas: 1
             placement:
                 constraints:
-                    - node.label.demo_nginx == true
+                    - node.labels.demo_nginx == true
 
     redis:
         image: redis
