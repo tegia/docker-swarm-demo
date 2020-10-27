@@ -25,6 +25,8 @@ services:
         build:
             context: .
             dockerfile: deployment/Dockerfile.nginx
+        ports:
+            - 8000:80
         links:
             - web
         deploy:
