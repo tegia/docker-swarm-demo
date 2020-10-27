@@ -41,5 +41,5 @@ secrets:
     db_password:
         external: true
 
-networks: 
-    service-swarm:
+# networks: 
+#     service-swarm:
