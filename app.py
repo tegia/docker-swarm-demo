@@ -6,6 +6,15 @@ from redis import Redis
 
 from secrets import secret, SecretNotFoundError
 
+import logging
+from logging.handlers import RotatingFileHandler
+
+logger = logging.getLogger('app')
+logger.setLevel(logging.DEBUG)
+
+handler = RotatingFileHandler('log/app.log', maxBytes=1024000*1024000, backupCount=2)
+logger.addHandler(handler)
+
 # Create the flask application
 app = Flask(__name__)
 
@@ -26,8 +35,9 @@ except SecretNotFoundError:
 @app.route('/')
 def home():
     # Increment the number of requests
+    logger.info('test')
     redis.incr('num_requests')
-
+    
     # Display process information to the user
     return render_template(
         'home.html',
