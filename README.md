@@ -33,6 +33,7 @@ a stack:
 echo "supersecretpassword" | docker secret create db_password -
 
 docker stack deploy -c docker-compose.yml demo
+docker stack deploy -c docker-compose.override.yml demo
 ```
 
 The first line defines the `db_password` secret in your Swarm, and the second deploys the actual stack.
