@@ -39,13 +39,15 @@ The first line defines the `db_password` secret in your Swarm, and the second de
 https://www.callicoder.com/docker-machine-swarm-stack-golang-example/
 
 # Add label
-docker node update --label-add api=true ytnceolfpy0sre2rbu782zbkk
-docker node update --label-add api=true p5hsf6ckj07r4jxd5iv4a4ojf
-docker node update --label-add nginx=true ytnceolfpy0sre2rbu782zbkk
-
+docker node update --label-add api=true q7enwmevwo1tivcvd9ikihezb
+docker node update --label-add api=true 4elpf9wwp86zuqp108ns6nhc7
+docker node update --label-add nginx=true q7enwmevwo1tivcvd9ikihezb
+docker node update --label-add celery_worker=true ytnceolfpy0sre2rbu782zbkk
 # Remove label
 docker node update --label-rm api ytnceolfpy0sre2rbu782zbkk
 docker node update --label-rm api p5hsf6ckj07r4jxd5iv4a4ojf
+docker node update --label-rm nginx p5hsf6ckj07r4jxd5iv4a4ojf
+docker node update --label-rm nginx ytnceolfpy0sre2rbu782zbkk
 docker node update --label-rm demo_nginx ytnceolfpy0sre2rbu782zbkk
 
 

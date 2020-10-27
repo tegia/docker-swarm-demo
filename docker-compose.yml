@@ -4,6 +4,8 @@ services:
     web:
         image: lsapan/docker-swarm-demo-web
         command: gunicorn --bind 0.0.0.0:5000 wsgi:app
+        networks:
+            - service-swarm
         deploy:
             mode: replicated
             replicas: 2
@@ -17,6 +19,8 @@ services:
         image: lsapan/docker-swarm-demo-nginx
         ports:
             - 8000:80
+        networks:
+            - service-swarm
         deploy:
             mode: replicated
             replicas: 1
@@ -26,6 +30,8 @@ services:
 
     redis:
         image: redis
+        networks:
+            - service-swarm
         deploy:
             replicas: 1
             placement:
@@ -34,3 +40,6 @@ services:
 secrets:
     db_password:
         external: true
+
+networks: 
+    service-swarm:
