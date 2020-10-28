@@ -6,7 +6,6 @@ services:
         command: gunicorn --bind 0.0.0.0:5000 wsgi:app
         networks:
             - service-swarm
-            - external-net
         deploy:
             mode: replicated
             replicas: 2
@@ -22,7 +21,6 @@ services:
             - 8000:80
         networks:
             - service-swarm
-            - external-net
         deploy:
             mode: replicated
             replicas: 1
@@ -34,7 +32,6 @@ services:
         image: redis
         networks:
             - service-swarm
-            - external-net
         deploy:
             replicas: 1
             placement:
@@ -46,5 +43,3 @@ secrets:
 
 networks: 
     service-swarm:
-    external-net:
-        external: true
