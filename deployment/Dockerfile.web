@@ -1,9 +1,25 @@
-FROM python:3.6-alpine
-RUN apk update && \
-    apk add
+FROM ubuntu:20.04
+
+RUN apt update && \
+    apt upgrade -y && \
+    apt install -y software-properties-common
+
+RUN add-apt-repository ppa:git-core/ppa && \
+    apt update && \
+    apt install -y git locales
+
+RUN locale-gen en_US.UTF-8
+
+RUN DEBIAN_FRONTEND=noninteractive apt install -y python3 python3-pip build-essential python3-dev \
+    libmysqlclient-dev libxml2-dev libxslt1-dev libssl-dev libffi-dev
+
+RUN ln -sf /usr/bin/python3 /usr/bin/python
+
+ENV LANG en_US.UTF-8
+
 # Install python dependencies
 COPY requirements.txt /home/docker/code/requirements.txt
-RUN pip install -r /home/docker/code/requirements.txt
+RUN pip3 install -r /home/docker/code/requirements.txt
 
 # Copy application code
 COPY . /home/docker/code
