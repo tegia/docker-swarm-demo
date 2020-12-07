@@ -13,7 +13,7 @@ services:
             - 5000:5000
         deploy:
             mode: replicated
-            replicas: 2
+            replicas: 1
             placement:
                 constraints:
                     - node.labels.api == true
@@ -38,6 +38,8 @@ services:
 
     redis:
         image: redis
+        ports:
+                - 127.0.0.1:6379:6379
         deploy:
             replicas: 1
             placement:

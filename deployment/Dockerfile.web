@@ -1,5 +1,6 @@
 FROM python:3.6-alpine
-
+RUN apk update && \
+    apk add
 # Install python dependencies
 COPY requirements.txt /home/docker/code/requirements.txt
 RUN pip install -r /home/docker/code/requirements.txt
