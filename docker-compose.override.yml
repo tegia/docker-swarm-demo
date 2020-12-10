@@ -46,6 +46,7 @@ services:
                 - node.labels.api == true
     
     combine_app_celery:
+        image: swarm/combine_app_celery
         build:
             context: ./combine_app_celery
             dockerfile: Dockerfile
