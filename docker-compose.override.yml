@@ -47,8 +47,8 @@ services:
     
     combine_app_celery:
         build:
-        context: ./combine_app_celery
-        dockerfile: Dockerfile
+            context: ./combine_app_celery
+            dockerfile: Dockerfile
         restart: always
         volumes: 
             - ./combine_app_celery:/combine_app_celery
