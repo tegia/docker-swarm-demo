@@ -33,8 +33,7 @@ services:
             mode: replicated
             replicas: 1
             placement:
-                constraints:
-                    - node.labels.nginx == true
+                constraints: [node.role == manager]
 
     redis:
         image: redis
@@ -43,7 +42,29 @@ services:
         deploy:
             replicas: 1
             placement:
-                constraints: [node.role == manager]
+                constraints:
+                - node.labels.api == true
+    
+    combine_app_celery:
+        build:
+        context: ./combine_app_celery
+        dockerfile: Dockerfile
+        restart: always
+        volumes: 
+            - ./combine_app_celery:/combine_app_celery
+        environment: 
+            - CELERY_BROKER_URL=redis://redis:6379/2
+            - CELERY_RESULT_BACKEND=redis://redis:6379/2
+        ports:
+            - "5556:5555"
+            - "5001:5000"
+        depends_on:
+            - redis
+        deploy:
+            replicas: 1
+            placement:
+                constraints:
+                - node.labels.api == true
 secrets:
     db_password:
         external: true
