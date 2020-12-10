@@ -29,7 +29,8 @@ def add_task(x, y):
         time.sleep(5) # lets sleep for a while before doing the gigantic addition task!
         print(''+str(x)+'-'+str(y))
         # return x+y
-        raise Exception("Sorry, no numbers below zero")
+        return x+y
+        # raise Exception("Sorry, no numbers below zero")
     except Exception as ex:
         logger.warning('retry')
         add_task.retry(args=[x, y], countdown=30)
